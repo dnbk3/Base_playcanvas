@@ -1,0 +1,17 @@
+[
+    {
+        "key": "spr_building_1",
+        "url": "assets/sprites/spr_building_1.png",
+        "type": "sprite"
+    },
+    {
+        "key": "helipad-env-atlas",
+        "url": "assets/textures/helipad-env-atlas.png",
+        "type": "texture"
+    },
+    {
+        "key": "model_building_1",
+        "url": "assets/models/model_building_1.glb",
+        "type": "model"
+    }
+]
