@@ -1,4 +1,4 @@
-# ABI-GTA
+# Base
 
 ## Getting started
 
@@ -14,10 +14,10 @@ Start dev server
 
 `npm run start`
 
-Build 
+Build
 
 `npm run build`
 
-Deploy github page 
+Deploy github page
 
 `npm run deploy`

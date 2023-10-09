@@ -16,10 +16,10 @@ import { DataLocal, DataLocalEvent } from "./number-merge/data/dataLocal";
 import { FPSRender } from "./libs/fpsRender";
 import { LoadingScene } from "./number-merge/scenes/loadingScene";
 import { DataManager } from "./number-merge/data/dataManager";
-import { AdBannerSize, AdEvent, AdsManager } from "./number-merge/ads/adsManager";
-import "../adSdk/sdk";
+
+
 export class Game {
-  
+
   static init() {
     this.canvas = document.createElement("canvas");
     document.body.appendChild(this.canvas);
@@ -34,61 +34,14 @@ export class Game {
     this.app.graphicsDevice.maxPixelRatio = window.devicePixelRatio;
     window.addEventListener("resize", () => this.app.resizeCanvas);
 
-    if (GameConstant.DEBUG_FPS) { 
+    if (GameConstant.DEBUG_FPS) {
       this.debugFPS();
     }
     loadObitCameraPlugin();
     AssetLoader.loadAssets(this.app, () => {
       this.load();
       this.create();
-      this.initBannerAds();
     });
-  }
-
-  static initBannerAds() {
-    AdsManager.init();
-    let id = "banner-ads";
-    this.bannerAdsElement = document.createElement("div");
-    this.bannerAdsElement.id = id;
-    this.bannerAdsStyle = this.bannerAdsElement.style;
-    document.body.appendChild(this.bannerAdsElement);
-
-    AdsManager.emitter.on(AdEvent.AD_INIT_COMPLETED, () => {
-      this.showBannerAds();
-    });
-  }
-
-  static showBannerAds() {
-    if (AdsManager.hasAdblock() || GameStateManager.prevState === GameState.Playing) {
-      return;
-    }
-    let bannerSize = null;
-    if (window.innerWidth < window.innerHeight) {
-      this.bannerAdsStyle.width = "300px";
-      this.bannerAdsStyle.height = "250px";
-      this.bannerAdsStyle.inset = "120px 0 0 auto";
-      this.bannerAdsStyle.float = "right";
-      bannerSize = AdBannerSize.SIZE1;
-    } else {
-      this.bannerAdsStyle.width = "100%";
-      this.bannerAdsStyle.height = "90px";
-      this.bannerAdsStyle.inset = "auto 0 0 0";
-      bannerSize = AdBannerSize.SIZE3;
-    }
-    AdsManager.showBanner(this.bannerAdsElement.id, bannerSize);
-    this.onResizeBannerAds();
-  }
-
-  static disableBannerAds() {
-    this.bannerAdsElement.style.display = "none";
-  }
-
-  static enableBannerAds() {
-    this.bannerAdsElement.style.display = "flex";
-  }
-
-  static onResizeBannerAds() {
-    
   }
 
   static debugFPS() {
@@ -143,18 +96,15 @@ export class Game {
       this.app.resizeCanvas(this.width, this.height);
       SceneManager.resize();
       this.app.fire("resize");
-      this.showBannerAds();
     }
   }
 
   static onStart() {
     GameStateManager.state = GameState.Playing;
-    this.disableBannerAds();
   }
 
   static replay() {
     GameStateManager.state = GameState.Tutorial;
-    this.showBannerAds();
   }
 
   static setPause(isPause) {
@@ -188,7 +138,7 @@ export class Game {
     return this.width < this.height;
   }
 
-  static isLandscape() { 
+  static isLandscape() {
     return this.width > this.height;
   }
 }
@@ -201,7 +151,7 @@ window.onload = function () {
 }
 
 window.addEventListener("resize", (event) => {
-  Game.resize({ width: window.innerWidth, height: window.innerHeight})
+  Game.resize({ width: window.innerWidth, height: window.innerHeight })
 });
 
 window.addEventListener("focus", () => {

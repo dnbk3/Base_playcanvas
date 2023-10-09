@@ -32,7 +32,6 @@ import { RedDamageControllerEvent } from "../scripts/controllers/redDamageContro
 import { BlockAreaManager } from "../objects/blockArea/blockAreaManager";
 import { UserData } from "../data/userData";
 import { DataLocal } from "../data/dataLocal";
-import { AdsManager } from "../ads/adsManager";
 import { Time } from "../../template/systems/time/time";
 
 export const PlaySceneEvent = Object.freeze({
@@ -65,7 +64,7 @@ export class PlayScene extends Scene {
     this._registerPlayScreenEvents();
   }
 
-  _registerPlayScreenEvents() { 
+  _registerPlayScreenEvents() {
     this.playScreen.on("playEffectComplete", () => {
       this.ui.setScreenActive(GameConstant.SCREEN_WIN);
       this.collectCurrency();
@@ -74,17 +73,17 @@ export class PlayScene extends Scene {
   }
 
   _registerTutorialScreenEvents() {
-    this.tutorialScreen.on(TutorialScreenEvent.ButtonStartNumberClicked, () => { 
+    this.tutorialScreen.on(TutorialScreenEvent.ButtonStartNumberClicked, () => {
       this.upgradePlayerStartNumber();
       this.updateUserData();
     });
-    this.tutorialScreen.on(TutorialScreenEvent.ButtonIncomeClicked, () => { 
+    this.tutorialScreen.on(TutorialScreenEvent.ButtonIncomeClicked, () => {
       this.upgradePlayerIncome();
       this.updateUserData();
     });
   }
 
-  upgradePlayerStartNumber() { 
+  upgradePlayerStartNumber() {
     let currency = UserData.currency;
     let startNumber = UserData.startNumber;
     let money = GameConstant.PLAYER_START_UPGRADE_NUMBER_MONEY * (startNumber - GameConstant.PLAYER_START_UPGRADE_NUMBER_STEP);
@@ -100,14 +99,12 @@ export class PlayScene extends Scene {
       this.player.controller.updateValue(UserData.startNumber);
       this.tutorialScreen.playAnimBtnNumberCount();
     } else {
-      AdsManager.showVideo(() => { }, () => {
-        UserData.startNumber += GameConstant.PLAYER_START_UPGRADE_NUMBER_STEP;
-        DataLocal.updateDataByKey(GameConstant.INDEXEDDB_START_NUMBER_KEY, UserData.startNumber);
-        this.player.updateValue(UserData.startNumber);
-        money = GameConstant.PLAYER_START_UPGRADE_NUMBER_MONEY * (UserData.startNumber - GameConstant.PLAYER_START_UPGRADE_NUMBER_STEP);
-        this.tutorialScreen.updateStartNumberText(UserData.startNumber, money);
-        this.player.controller.updateValue(UserData.startNumber);
-      });
+      UserData.startNumber += GameConstant.PLAYER_START_UPGRADE_NUMBER_STEP;
+      DataLocal.updateDataByKey(GameConstant.INDEXEDDB_START_NUMBER_KEY, UserData.startNumber);
+      this.player.updateValue(UserData.startNumber);
+      money = GameConstant.PLAYER_START_UPGRADE_NUMBER_MONEY * (UserData.startNumber - GameConstant.PLAYER_START_UPGRADE_NUMBER_STEP);
+      this.tutorialScreen.updateStartNumberText(UserData.startNumber, money);
+      this.player.controller.updateValue(UserData.startNumber);
     }
   }
 
@@ -127,13 +124,11 @@ export class PlayScene extends Scene {
       this.playScreen.updateCurrencyText(Math.ceil(UserData.currency));
       this.tutorialScreen.playAnimBtnIncome();
     } else {
-      AdsManager.showVideo(() => { }, () => {
-        UserData.income += (GameConstant.PLAYER_START_UPGRADE_INCOME_STEP * 10) / 10;
-        DataLocal.updateDataByKey(GameConstant.INDEXEDDB_INCOME_KEY, UserData.income);
-        nextIncome = UserData.income + GameConstant.PLAYER_START_UPGRADE_INCOME_STEP;
-        incomeMoney = GameConstant.PLAYER_START_UPGRADE_INCOME_MONEY * ((nextIncome * 10 - GameConstant.PLAYER_START_INCOME * 10));
-        this.tutorialScreen.updateIncomeText(UserData.income, incomeMoney);
-      })
+      UserData.income += (GameConstant.PLAYER_START_UPGRADE_INCOME_STEP * 10) / 10;
+      DataLocal.updateDataByKey(GameConstant.INDEXEDDB_INCOME_KEY, UserData.income);
+      nextIncome = UserData.income + GameConstant.PLAYER_START_UPGRADE_INCOME_STEP;
+      incomeMoney = GameConstant.PLAYER_START_UPGRADE_INCOME_MONEY * ((nextIncome * 10 - GameConstant.PLAYER_START_INCOME * 10));
+      this.tutorialScreen.updateIncomeText(UserData.income, incomeMoney);
     }
   }
 
@@ -151,17 +146,7 @@ export class PlayScene extends Scene {
   }
 
   replay() {
-    let isShow = this._detectShowVideoAds();
-    if (isShow) { 
-      AdsManager.showVideo(() => { }, () => {
-        this._resetAds();
-       this._onReplayed();
-      } , () => {
-      this._onReplayed();
-      });
-    } else {
-      this._onReplayed();
-    }
+    this._onReplayed();
   }
 
   _onReplayed() {
@@ -213,18 +198,7 @@ export class PlayScene extends Scene {
   }
 
   nextLevel() {
-    let isShow = this._detectShowVideoAds();
-    if (isShow) { 
-      AdsManager.showVideo(() => { }, () => {
-        this._resetAds();
-        console.log("done");
-        this._onNextLevel();
-      }, () => {
-        this._onNextLevel();
-      });
-    } else {
-      this._onNextLevel();
-    }
+    this._onNextLevel()
   }
 
   _onNextLevel() {
@@ -277,16 +251,6 @@ export class PlayScene extends Scene {
     this.gameManager.on(GameManagerEvent.Win, this.inputHandler.disable, this.inputHandler);
   }
 
-  _detectShowVideoAds() {
-    let isShow = false;
-    if (this.currentTime >= GameConstant.VIDEO_ADS_TIME_APPEAR || this.levelPass > GameConstant.VIDEO_ADS_COUNT_APPEAR) {
-      isShow = true;
-    } else {
-      isShow = false;
-    }
-    return isShow;
-  }
-
   _onLose() {
     this.levelPass += 1;
     GameStateManager.state = GameState.Lose;
@@ -327,7 +291,7 @@ export class PlayScene extends Scene {
     this._cacheShader();
   }
 
-  registerSoliderManagerEvents() { 
+  registerSoliderManagerEvents() {
     this.soliderManager.offAllEvent();
     this.soliderManager.on(SoliderManagerEvent.Lose, () => {
       this._onFightToBigBoss();
@@ -388,7 +352,7 @@ export class PlayScene extends Scene {
           }
         }).start();
       }
-     });
+    });
   }
 
   _initAudio() {
@@ -534,7 +498,7 @@ export class PlayScene extends Scene {
     this.registerSoliderManagerEvents();
   }
 
-  registerLevelEvents() { 
+  registerLevelEvents() {
     this.level.redDamages.forEach(redDmg => {
       redDmg.off(RedDamageControllerEvent.Hit, this._onRedDamageDestroy, this);
       redDmg.once(RedDamageControllerEvent.Hit, this._onRedDamageDestroy, this);
@@ -584,10 +548,8 @@ export class PlayScene extends Scene {
     this.fire(PlaySceneEvent.LevelLoaded);
     this.ui.setScreenActive(GameConstant.SCREEN_PLAY);
     this.ui.setScreenActive(GameConstant.SCREEN_TUTORIAL);
-    // AdsManager.showBanner();
-    // AdsManager.showVideo();
   }
-  
+
   _onRedDamageDestroy(redDmg) {
     this.redDamageEffect.playAt(redDmg);
   }
@@ -661,7 +623,7 @@ export class PlayScene extends Scene {
     }).start();
   }
 
-  _shakeCamera() { 
+  _shakeCamera() {
     Tween.createLocalTranslateTween(this.mainCamera, { x: "+0.5", y: "+0.5" }, {
       duration: 0.07,
       easing: Tween.Easing.Sinusoidal.InOut,
@@ -694,7 +656,7 @@ export class PlayScene extends Scene {
     this.sfxCollectItem.play();
   }
 
-  _onPlayerHitRedDamage(redDmg) { 
+  _onPlayerHitRedDamage(redDmg) {
     this.blueSphereFx.playAt(this.player);
     this.sfxRedDamageTick.play();
   }
@@ -717,7 +679,7 @@ export class PlayScene extends Scene {
       Util.createColor(131, 225, 173),
     ];
     let textures = []
-    for(let i = 0; i < topColor.length; i++) {
+    for (let i = 0; i < topColor.length; i++) {
       const texWidth = 256;
       const texHeight = 512;
       let texture = new pc.Texture(Game.app.graphicsDevice, {
@@ -731,15 +693,15 @@ export class PlayScene extends Scene {
 
       var count = 0;
       var result = new pc.Color();
-  
+
       const topPixelColor = topColor[i];
       const bottomPixelColor = bottomColor[i];
-  
-      for (var h = 0; h < texHeight; h++) {              
-        for (var w = 0; w < texWidth; w++) {                  
-  
+
+      for (var h = 0; h < texHeight; h++) {
+        for (var w = 0; w < texWidth; w++) {
+
           result.lerp(topPixelColor, bottomPixelColor, h / (texHeight - 1));
-  
+
           // assign the result color to each texture pixel:
           pixels[count++] = result.r * 255;       // red
           pixels[count++] = result.g * 255;       // green

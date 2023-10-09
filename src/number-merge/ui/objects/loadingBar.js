@@ -3,14 +3,13 @@ import { AssetLoader } from "../../../assetLoader/assetLoader";
 import { Util } from "../../../helpers/util";
 import { Time } from "../../../template/systems/time/time";
 import { DataLocal, DataLocalState } from "../../data/dataLocal";
-import { AdState, AdsManager } from "../../ads/adsManager";
 
 export const LoadingBarEvent = Object.freeze({
   COMPLETE: "complete",
   START: "start"
 });
 
-export class LoadingBar extends Entity{
+export class LoadingBar extends Entity {
   constructor(data) {
     super("loadingBar");
     data.type = data.type || ELEMENTTYPE_IMAGE;
@@ -25,7 +24,7 @@ export class LoadingBar extends Entity{
     this._initBar();
   }
 
-  _initBar() { 
+  _initBar() {
     this.bar = new Entity("bar");
     this.bar.addComponent("element", {
       type: ELEMENTTYPE_IMAGE,
@@ -40,7 +39,7 @@ export class LoadingBar extends Entity{
     this.addChild(this.bar);
   }
 
-  setProgress(progress) { 
+  setProgress(progress) {
     progress = math.clamp(progress, 0, 1);
     this.progress = progress;
     var width = math.lerp(0, this.progressImageMaxWidth, progress);
@@ -55,7 +54,7 @@ export class LoadingBar extends Entity{
       return;
     }
     this.increase += Time.dt;
-    if (this.increase >= 0.98 && (DataLocal.state === DataLocalState.Loading)) { 
+    if (this.increase >= 0.98 && (DataLocal.state === DataLocalState.Loading)) {
       this.increase = 0.98;
       return;
     }
