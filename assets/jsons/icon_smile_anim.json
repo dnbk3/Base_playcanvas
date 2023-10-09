@@ -1,0 +1,393 @@
+{
+    "frames": { 
+        "spr_icon_smile_00": {
+            "frame": {
+                "x": 1,
+                "y": 1,
+                "w": 148,
+                "h": 169
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 148,
+                "h": 169
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_01": {
+            "frame": {
+                "x": 1,
+                "y": 172,
+                "w": 148,
+                "h": 168
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 1,
+                "w": 148,
+                "h": 168
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_02": {
+            "frame": {
+                "x": 301,
+                "y": 172,
+                "w": 148,
+                "h": 167
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 2,
+                "w": 148,
+                "h": 167
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_03": {
+            "frame": {
+                "x": 1,
+                "y": 342,
+                "w": 148,
+                "h": 166
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 3,
+                "w": 148,
+                "h": 166
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_04": {
+            "frame": {
+                "x": 301,
+                "y": 510,
+                "w": 148,
+                "h": 164
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 5,
+                "w": 148,
+                "h": 164
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_05": {
+            "frame": {
+                "x": 1,
+                "y": 678,
+                "w": 148,
+                "h": 163
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 6,
+                "w": 148,
+                "h": 163
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_06": {
+            "frame": {
+                "x": 1,
+                "y": 1007,
+                "w": 148,
+                "h": 162
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 7,
+                "w": 148,
+                "h": 162
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_07": {
+            "frame": {
+                "x": 151,
+                "y": 1008,
+                "w": 148,
+                "h": 160
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 9,
+                "w": 148,
+                "h": 160
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_08": {
+            "frame": {
+                "x": 151,
+                "y": 678,
+                "w": 148,
+                "h": 163
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 6,
+                "w": 148,
+                "h": 163
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_09": {
+            "frame": {
+                "x": 151,
+                "y": 342,
+                "w": 148,
+                "h": 166
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 3,
+                "w": 148,
+                "h": 166
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_10": {
+            "frame": {
+                "x": 151,
+                "y": 1,
+                "w": 148,
+                "h": 169
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 148,
+                "h": 169
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_11": {
+            "frame": {
+                "x": 151,
+                "y": 172,
+                "w": 148,
+                "h": 168
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 1,
+                "w": 148,
+                "h": 168
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_12": {
+            "frame": {
+                "x": 301,
+                "y": 341,
+                "w": 148,
+                "h": 167
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 2,
+                "w": 148,
+                "h": 167
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_13": {
+            "frame": {
+                "x": 1,
+                "y": 510,
+                "w": 148,
+                "h": 166
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 3,
+                "w": 148,
+                "h": 166
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_14": {
+            "frame": {
+                "x": 301,
+                "y": 676,
+                "w": 148,
+                "h": 164
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 5,
+                "w": 148,
+                "h": 164
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_15": {
+            "frame": {
+                "x": 301,
+                "y": 842,
+                "w": 148,
+                "h": 163
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 6,
+                "w": 148,
+                "h": 163
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_16": {
+            "frame": {
+                "x": 301,
+                "y": 1007,
+                "w": 148,
+                "h": 162
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 7,
+                "w": 148,
+                "h": 162
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_17": {
+            "frame": {
+                "x": 1,
+                "y": 843,
+                "w": 148,
+                "h": 160
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 9,
+                "w": 148,
+                "h": 160
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_18": {
+            "frame": {
+                "x": 151,
+                "y": 843,
+                "w": 148,
+                "h": 163
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 6,
+                "w": 148,
+                "h": 163
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_19": {
+            "frame": {
+                "x": 151,
+                "y": 510,
+                "w": 148,
+                "h": 166
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 3,
+                "w": 148,
+                "h": 166
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }, 
+        "spr_icon_smile_20": {
+            "frame": {
+                "x": 301,
+                "y": 1,
+                "w": 148,
+                "h": 169
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 148,
+                "h": 169
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    },
+    "meta": {
+        "app": "https://www.codeandweb.com/texturepacker",
+        "exporter": "playcanvas",
+        "image": "spr_icon_smile_anim.png",
+        "size": {
+            "w": 450,
+            "h": 1170
+        },
+        "smartupdate": "$TexturePacker:SmartUpdate:30ee8c9a0047e09981584c48b971569a:3823ca1b7c3d14bd502fbf3913d39a4b:5b4c02f993302ecfffc3f77a135a6781$",
+        "version": "1.0"
+    }
+}

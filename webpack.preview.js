@@ -31,7 +31,7 @@ module.exports = {
   devtool: false,
   output: {
     filename: "game.bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "preview"),
   },
   plugins: [
     new CleanWebpackPlugin({

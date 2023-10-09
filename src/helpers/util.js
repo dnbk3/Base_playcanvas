@@ -18,6 +18,12 @@ export class Util {
     return a + (b - a) * ((-Math.cos(percent * Math.PI) / 2) + 0.5);
   }
 
+  static m(n, d) {
+    x = ('' + n).length, p = Math.pow, d = p(10, d)
+    x -= x % 3
+    return Math.round(n * d / p(10, x)) / d + " kMGTPE"[x / 3]
+  }
+
   static copyObject(src, dst = {}) {
     Object.keys(src).forEach((key) => {
       dst[key] = src[key];
@@ -56,6 +62,12 @@ export class Util {
     out.y = Util.random(vecMin.y, vecMax.y);
     out.z = Util.random(vecMin.z, vecMax.z);
     return out;
+  }
+
+  static pad(num, size) {
+    var s = num + "";
+    while (s.length < size) s = "0" + s;
+    return s;
   }
 
   static distanceBetween(a, b) {
@@ -194,6 +206,20 @@ export class Util {
     if (num >= 1000) {
       return `${(num / 1000).toFixed(1).replace(/\.0$/, "")}K`;
     }
-    return num;
+    return num.toFixed(0);
+  }
+
+  static getCashFormatByMin(num) {
+    if (num >= 1000000000) {
+      return `${(num / 1000000000).toFixed(1).replace(/\.0$/, "")}B`;
+    }
+    if (num >= 1000000) {
+      return `${(num / 1000000).toFixed(1).replace(/\.0$/, "")}M`;
+    }
+    return num.toFixed(0);
+  }
+
+  static formatCash(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 }

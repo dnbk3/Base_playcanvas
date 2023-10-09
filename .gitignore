@@ -1,2 +1,10 @@
-﻿node_modules
+node_modules
 package-lock.json
+dist
+src/.DS_Store
+*/.DS_Store
+assets/jsons/assetData.json
+src/number-merge/.DS_Store
+assets/sprites/.DS_Store
+.DS_Store
+preview

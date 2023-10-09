@@ -1,0 +1,18 @@
+export const CollisionTag = Object.freeze({
+  Default           : "default",
+  Player            : "player",
+  MapObject         : "mapobject",
+  Road              : "road",
+  EndWall           : "endwall",
+  BigBossStart      : "bigbossstart",
+  SoliderBossStart  : "soliderbossstart",
+  Boss              : "boss",
+  FinishLine        : "finishline",
+  SoliderPlayer     : "solider:player",
+  SoliderEnemy      : "solider:enemy",
+  HeadWall          : "wall",
+  BodyWall          : "bodywall",
+  RedDamage         : "reddamage",
+  Jump              : "jump",
+  SawBlade          : "sawblade",
+});

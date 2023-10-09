@@ -8,20 +8,6 @@ export class AssetLoader {
     this._loadedTexture = 0;
     this._textureAtlases = [];
     this.assets = [];
-    this.assetScripts = {
-      script1: new pc.Asset("script1", "script", {
-      url: "../../assets/libs/tracking-camera.js",
-    }),
-      script2: new pc.Asset("script2", "script", {
-      url: "../../assets/libs/render-physics.js",
-    }),
-      script3: new pc.Asset("script3", "script", {
-      url: "../../assets/libs/action-physics-reset.js",
-    }),
-      script4: new pc.Asset("script4", "script", {
-      url: "../../assets/libs/vehicle.js",
-    }),
-    }
     assetData.forEach((data) => {
       if (data.type === "sprite") {
         this.createTexture(data.url, data.key);
@@ -49,6 +35,16 @@ export class AssetLoader {
 
   static getAssetByKey(id) {
     return this.assets.find((asset) => asset.name === id);
+  }
+
+  static _loadFonts(onLoad) {
+    Object.keys(assetData.fonts).forEach((key) => {
+      this.assets.loadFromUrl(assetData.fonts[key].data, "font", (err, res) => {
+        this.registerAsset(res.resource, key, "font");
+        this._loadedFonts++;
+        this.allFontsLoaded && onLoad?.();
+      });
+    });
   }
 
   static createTexture(src, key) {
@@ -140,7 +136,7 @@ export class AssetLoader {
       fontSize: fontSize,
       fontWeight: fontWeight,
     });
-    canvasFontArial.createTextures("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,!?-+/():;%&`'*#=[]\"");
+    canvasFontArial.createTextures("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,!?-+/():;%&`'*#=÷[]\"");
     let fontAsset = new pc.Asset("CanvasFont", "font", {});
     fontAsset.resource = canvasFontArial;
     fontAsset.loaded = true;

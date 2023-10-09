@@ -27,6 +27,16 @@ export class SceneManager {
     }
   }
 
+
+  static removeScene(scene) { 
+    let sceneRemove = this.scenes.find((s) => s.key === scene.key);
+    if (sceneRemove) { 
+      this.scenes.splice(this.scenes.indexOf(sceneRemove), 1);
+      sceneRemove.destroy();
+      Game.app.root.removeChild(sceneRemove);
+    }
+  }
+
   static loadSceneAddtive(scene) {
     this.addtiveScenes.push(scene);
     Game.app.root.addChild(scene);

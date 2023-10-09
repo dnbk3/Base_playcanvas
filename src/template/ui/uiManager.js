@@ -1,5 +1,6 @@
 import { Entity } from "playcanvas";
 import { GameConstant } from "../../gameConstant";
+import { Debug } from "../debug";
 
 export class UIManager extends Entity {
   constructor() {
@@ -48,6 +49,7 @@ export class UIManager extends Entity {
   setScreenActive(key, isActive = true) {
     let screen = this.getScreen(key);
     if (screen) {
+      Debug.log(`Set screen ${key} active:`, isActive);
       isActive && screen.create();
       screen.enabled = isActive;
     }

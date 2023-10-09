@@ -6,6 +6,10 @@ First, install dependencies
 
 `npm install`
 
+Build game data
+
+`npm run data`
+
 Start dev server
 
 `npm run start`
