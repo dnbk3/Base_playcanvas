@@ -1,5 +1,7 @@
 import * as pc from "playcanvas";
 import assetData from "../../assets/jsons/assetData.json";
+import { SoundManager } from "../template/soundManager";
+
 
 export class AssetLoader {
   static loadAssets(app, callback) {
@@ -17,6 +19,7 @@ export class AssetLoader {
           url: data.url,
         });
         this.assets.push(asset);
+
       }
     });
     const assetListLoader = new pc.AssetListLoader(
@@ -28,6 +31,8 @@ export class AssetLoader {
       this._loadTextures(() => {
         this._loadTextureAtlases();
         this._loadSpriteAssets();
+        this.audioAssets = this.assets.filter((asset) => asset.type === "audio");
+        SoundManager.initSound(this.audioAssets);
         callback();
       });
     });
@@ -98,7 +103,7 @@ export class AssetLoader {
 
   static _loadTextures(onLoad) {
     this.onLoadTextures = onLoad;
-    if (this.textures.length === 0) { 
+    if (this.textures.length === 0) {
       this.onLoadTextures && this.onLoadTextures();
       return;
     }

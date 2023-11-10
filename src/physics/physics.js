@@ -9,13 +9,9 @@ export class Physics {
   static init(app) {
     CollisionDetector.instance.init([
       {
-        tag         : CollisionTag.Player,
-        collideTags: [CollisionTag.MapObject, CollisionTag.Road, CollisionTag.EndWall, CollisionTag.Boss, CollisionTag.BigBossStart, CollisionTag.SoliderBossStart, CollisionTag.FinishLine, CollisionTag.HeadWall, CollisionTag.RedDamage, CollisionTag.Jump, CollisionTag.SawBlade],
-      },
-      {
-        tag: CollisionTag.SoliderPlayer,
-        collideTags: [CollisionTag.SoliderEnemy],
-      },
+        tag: CollisionTag.Player,
+        collideTags: [],
+      }
     ]);
 
     app.on("update", this.update, this);
@@ -25,7 +21,7 @@ export class Physics {
     CollisionDetector.instance.update();
   }
 
-  static reset() { 
+  static reset() {
     CollisionDetector.instance.reset();
   }
 }

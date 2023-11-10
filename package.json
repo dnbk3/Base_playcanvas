@@ -3,7 +3,6 @@
     "@tweenjs/tween.js": "^20.0.3",
     "canvas-confetti": "^1.6.0",
     "gh-pages": "^5.0.0",
-    "howler": "^2.2.3",
     "html-inline-script-webpack-plugin": "^3.1.0",
     "ip": "^1.1.8",
     "playcanvas": "1.63.0",
@@ -13,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/daotrongphuc0/Base_playcanvas.git"
+    "url": "git+https://github.com/abidanang/NumberMerge.git"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
@@ -21,7 +20,7 @@
     "esbuild-loader": "^3.0.1",
     "html-webpack-plugin": "^5.5.1"
   },
-  "name": "Base_PlayCanvas",
+  "name": "NumberMerge",
   "version": "1.0.0",
   "main": "game.js",
   "scripts": {
@@ -31,8 +30,8 @@
     "build": "webpack --env env=preview",
     "clean-gh-pages-cached": "node node_modules/gh-pages/bin/gh-pages-clean",
     "deploy": "gh-pages -d dist"
-    },
-  "author": "DNBK3",
+  },
+  "author": "ABI game studio",
   "license": "ISC",
   "description": ""
 }

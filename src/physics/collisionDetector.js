@@ -19,11 +19,11 @@ export class CollisionDetector {
     this.roadArea = [];
   }
 
-  addWallArea(area) { 
+  addWallArea(area) {
     this.wallArea.push(area);
   }
 
-  addRoadArea(area) { 
+  addRoadArea(area) {
     this.roadArea.push(area);
   }
 
@@ -93,7 +93,7 @@ export class CollisionDetector {
     this.groups[tag].push(collider);
   }
 
-  get(tag) { 
+  get(tag) {
     return this.groups[tag];
   }
 

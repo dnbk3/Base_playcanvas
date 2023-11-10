@@ -12,9 +12,9 @@ export const DataLocalState = Object.freeze({
   Unloaded: "unloaded",
 });
 
-export class DataLocal{
+export class DataLocal {
   static init() {
-    if (!window.indexedDB) { 
+    if (!window.indexedDB) {
       Debug.log("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.")
       return;
     }
@@ -23,23 +23,20 @@ export class DataLocal{
     this.dbVersion = GameConstant.INDEXEDDB_VERSION;
     this.db = null;
     this.totalLoad = 0;
-    this.totalData = 4;
+    this.totalData = 1;
     var request = window.indexedDB.open(this.dbName, this.dbVersion);
-    request.onupgradeneeded = (event) => { 
+    request.onupgradeneeded = (event) => {
       this.db = event.target.result;
       if (!this.db.objectStoreNames.contains(GameConstant.INDEXEDDB_STORE_NAME)) {
         this.db.createObjectStore(GameConstant.INDEXEDDB_STORE_NAME);
       }
     }
     this.state = DataLocalState.Loading;
-    request.onsuccess = (event) => { 
+    request.onsuccess = (event) => {
       this.db = event.target.result;
       this.getCurrency();
-      this.getCurrentLevel();
-      this.getStartNumber();
-      this.getUserIncome();
     }
-    request.onerror = (event) => { 
+    request.onerror = (event) => {
       Debug.error("error: ", event);
     }
   }
@@ -50,20 +47,6 @@ export class DataLocal{
       this.state = DataLocalState.Loaded;
       Game.app.fire(DataLocalEvent.Initialize);
     }
-  }
-
-  static getCurrentLevel() { 
-    this.getData(GameConstant.INDEXEDDB_CURRENT_LEVEL_KEY).then((value) => {
-      if (typeof (value) === "undefined") {
-        this.currentLevel = 1;
-        this.addData(GameConstant.INDEXEDDB_CURRENT_LEVEL_KEY, this.currentLevel);
-      } else {
-        this.currentLevel = value;
-      }
-      this.checkLoad();
-    }).catch((error) => {
-      console.error(error);
-    });
   }
 
   static getCurrency() {
@@ -80,53 +63,25 @@ export class DataLocal{
     });
   }
 
-  static getStartNumber() {
-    this.getData(GameConstant.INDEXEDDB_START_NUMBER_KEY).then((value) => {
-      if (typeof (value) === "undefined") {
-        this.startNumber = GameConstant.PLAYER_START_NUMBER;
-        this.addData(GameConstant.INDEXEDDB_START_NUMBER_KEY, this.startNumber);
-      } else {
-        this.startNumber = value;
-      }
-      this.checkLoad();
-    }).catch((error) => {
-      console.error(error);
-    });
-  }
-
-  static getUserIncome() {
-    this.getData(GameConstant.INDEXEDDB_INCOME_KEY).then((value) => {
-      if (typeof (value) === "undefined") {
-        this.userIncomeValue = GameConstant.PLAYER_START_INCOME;
-        this.addData(GameConstant.INDEXEDDB_INCOME_KEY, this.userIncomeValue);
-      } else {
-        this.userIncomeValue = value;
-      }
-      this.checkLoad();
-    }).catch((error) => {
-      console.error(error);
-    });
-  }
-
-  static addData(key, value) { 
+  static addData(key, value) {
     const userData = this.db.transaction(GameConstant.INDEXEDDB_STORE_NAME, "readwrite").objectStore(GameConstant.INDEXEDDB_STORE_NAME);
     var request = userData.add(value, key);
-    request.onsuccess = () => { 
+    request.onsuccess = () => {
       Debug.log("add success", key);
     }
-    request.onerror = (err) => { 
+    request.onerror = (err) => {
       Debug.error("add error", err);
     }
   }
 
-  static getData(key) { 
+  static getData(key) {
     return new Promise((resolve, reject) => {
       const userData = this.db.transaction(GameConstant.INDEXEDDB_STORE_NAME, "readwrite").objectStore(GameConstant.INDEXEDDB_STORE_NAME);
       let request = userData.get(key);
-      request.onsuccess = (event) => { 
+      request.onsuccess = (event) => {
         resolve(event.target.result);
       }
-      request.onerror = (event) => { 
+      request.onerror = (event) => {
         reject(event);
       }
     });
@@ -135,24 +90,24 @@ export class DataLocal{
   static updateCurrentLevelData(value) {
     const userData = this.db.transaction(GameConstant.INDEXEDDB_STORE_NAME, "readwrite").objectStore(GameConstant.INDEXEDDB_STORE_NAME);
     var request = userData.get(GameConstant.INDEXEDDB_CURRENT_LEVEL_KEY);
-    request.onsuccess = (event) => { 
+    request.onsuccess = (event) => {
       var data = event.target.result;
       data = value;
       this.currentLevel = data;
       var requestUpdate = userData.put(data, GameConstant.INDEXEDDB_CURRENT_LEVEL_KEY);
-      requestUpdate.onsuccess = () => { 
+      requestUpdate.onsuccess = () => {
         Debug.log("update success");
       }
-      requestUpdate.onerror = (err) => { 
+      requestUpdate.onerror = (err) => {
         Debug.error("update error", err);
       }
     }
-    request.onerror = (event) => { 
+    request.onerror = (event) => {
       Debug.error("error: ", event);
     }
   }
 
-  static updateDataByKey(key, value) { 
+  static updateDataByKey(key, value) {
     const userData = this.db.transaction(GameConstant.INDEXEDDB_STORE_NAME, "readwrite").objectStore(GameConstant.INDEXEDDB_STORE_NAME);
     var request = userData.get(key);
     request.onsuccess = (event) => {

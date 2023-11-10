@@ -21,8 +21,6 @@ export class LoadingScreen extends UIScreen {
     });
     this.addChild(this.bg);
 
-    this._initGameLogo();
-    this._initGameName();
     this._initLoadingBar();
     this._initLoadingText();
   }
@@ -31,20 +29,7 @@ export class LoadingScreen extends UIScreen {
     super.create();
   }
 
-  _initGameLogo() {
-    this.gameLogo = ObjectFactory.createImageElement("spr_game_logo");
-    this.addChild(this.gameLogo);
-    this.onResizeGameLogo();
-  }
-
-  _initGameName() {
-    this.gameName = ObjectFactory.createImageElement("spr_game_name");
-    this.gameName.setLocalScale(1.3, 1.3, 1.3);
-    this.addChild(this.gameName);
-    this.onResizeGameName();
-  }
-
-  _initLoadingBar() { 
+  _initLoadingBar() {
     this.loadingBar = new LoadingBar({
       anchor: new Vec4(0.5, 0.2, 0.5, 0.2),
       width: 500,
@@ -76,12 +61,12 @@ export class LoadingScreen extends UIScreen {
 
   onResizeGameLogo() {
     let anchor = new Vec4(0.5, 0.7, 0.5, 0.7);
-    if (Game.isLandscape()) { 
+    if (Game.isLandscape()) {
       anchor = new Vec4(0.2, 0.65, 0.2, 0.65);
     }
     this.gameLogo.element.anchor = anchor;
   }
-  
+
   onResizeGameName() {
     let anchor = new Vec4(0.5, 0.4, 0.5, 0.4)
     if (Game.isLandscape()) {
@@ -100,5 +85,5 @@ export class LoadingScreen extends UIScreen {
     super.update();
     this.loadingBar.update();
   }
- 
+
 }
